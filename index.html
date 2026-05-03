@@ -16,7 +16,6 @@
         }
 
         body {
-            /* Arkaplan ayarları: Kaliteyi korur ve sayfayı tam kaplar */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('arkaplan.png') no-repeat center center fixed;
             background-size: cover;
@@ -143,7 +142,6 @@
 <body>
 
     <div class="profile-container fade-in">
-        <!-- Profil Fotoğrafın -->
         <img src="ppp.jpg" 
              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=RTX&background=a855f7&color=fff';" 
              class="profile-pic" 
@@ -153,7 +151,6 @@
     </div>
 
     <div class="links-container">
-        <!-- Sosyal Medya Linkleri -->
         <a href="https://www.youtube.com/@robloxturkiyex" target="_blank" class="btn fade-in">
             <i class="fab fa-youtube" style="color: var(--yt-red);"></i> YouTube
         </a>
@@ -168,12 +165,10 @@
         </a>
         
         <div class="section-divider fade-in">Destekle</div>
-        <!-- Shopier Bağış Linki -->
         <a href="https://www.shopier.com/RobloxTurkiyeX" target="_blank" class="btn fade-in">
             <i class="fas fa-shopping-basket" style="color: #00a1e4;"></i> Destek Ol (Shopier)
         </a>
 
-        <!-- Akıllı Hedef Kartı -->
         <div class="stats-card fade-in" id="statsSection">
             <i class="fab fa-youtube" style="color: var(--yt-red); font-size: 2.2rem;"></i>
             <div class="counter" id="subCount">0</div>
@@ -185,7 +180,6 @@
         </div>
     </div>
 
-    <!-- İletişim Kısmı -->
     <div class="fade-in" style="text-align:center; margin-top:60px; padding-bottom: 60px;">
         <p style="color: #eee; text-shadow: 1px 1px 2px black;">İş birlikleri ve iletişim için:</p>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.robloxturkiyex@gmail.com&su=İş Birliği Teklifi&body=Merhaba RobloxTurkiyeX," 
@@ -195,28 +189,19 @@
     </div>
 
     <script>
-        // --- BURAYI GÜNCELLEMEN YETERLİ ---
-        const currentSubs = 450; // Mevcut abone sayın
-        // ---------------------------------
-
-        // Akıllı Hedef Belirleme
-        let targetSubs;
-        if (currentSubs < 1000) {
-            targetSubs = 1000;
-        } else if (currentSubs < 10000) {
-            targetSubs = 10000;
-        } else {
-            targetSubs = 100000;
-        }
+        // API Bilgilerin
+        const apiKey = 'AIzaSyCaXR4ufzN3Mx3ACZQRMUVd42Arf9blq8I';
+        const channelId = 'UCr6W6_9R0X4vVj-r6FvY4Yw'; 
 
         let animated = false;
 
+        // Sayfa kaydırıldığında animasyonu tetikle
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     if (entry.target.id === 'statsSection' && !animated) {
-                        startStatsAnimation();
+                        fetchYouTubeStats();
                         animated = true;
                     }
                 }
@@ -225,22 +210,42 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        function startStatsAnimation() {
+        async function fetchYouTubeStats() {
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
+                const data = await response.json();
+                const currentSubs = parseInt(data.items[0].statistics.subscriberCount);
+                
+                // Dinamik Hedef Belirleme
+                let targetSubs;
+                if (currentSubs < 1000) targetSubs = 1000;
+                else if (currentSubs < 10000) targetSubs = 10000;
+                else targetSubs = 100000;
+
+                startStatsAnimation(currentSubs, targetSubs);
+            } catch (error) {
+                console.error("API Hatası:", error);
+                document.getElementById('subCount').innerText = "???";
+                document.getElementById('targetDescription').innerText = "Veri alınamadı.";
+            }
+        }
+
+        function startStatsAnimation(currentSubs, targetSubs) {
             const duration = 2500;
             const frameRate = 1000 / 60;
             const totalFrames = duration / frameRate;
             
-            // 1. Sayı Animasyonu
+            // 1. Sayı Sayma Efekti
             let countFrame = 0;
             const countInterval = setInterval(() => {
                 countFrame++;
                 const progress = countFrame / totalFrames;
                 const easeProgress = 1 - Math.pow(1 - progress, 3);
-                document.getElementById('subCount').innerText = Math.floor(easeProgress * currentSubs).toLocaleString();
+                document.getElementById('subCount').innerText = Math.floor(easeProgress * currentSubs).toLocaleString('tr-TR');
                 if (countFrame >= totalFrames) clearInterval(countInterval);
             }, frameRate);
 
-            // 2. Hedef Metni ve Yüzde
+            // 2. Yüzde ve Hedef Metni
             const finalPercent = Math.min((currentSubs / targetSubs) * 100, 100);
             let percentFrame = 0;
             const percentInterval = setInterval(() => {
@@ -248,14 +253,12 @@
                 const progress = percentFrame / totalFrames;
                 const easeProgress = 1 - Math.pow(1 - progress, 3);
                 const currentPercent = Math.floor(easeProgress * finalPercent);
-                
                 document.getElementById('targetDescription').innerHTML = 
-                    `Hedef: ${targetSubs.toLocaleString()} Abone (%${currentPercent})`;
-                
+                    `Hedef: ${targetSubs.toLocaleString('tr-TR')} Abone (%${currentPercent})`;
                 if (percentFrame >= totalFrames) clearInterval(percentInterval);
             }, frameRate);
 
-            // 3. İlerleme Çubuğu Animasyonu
+            // 3. Çubuğu Kaydır
             setTimeout(() => {
                 document.getElementById('targetBar').style.width = finalPercent + '%';
             }, 300);
