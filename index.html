@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RobloxTurkiyeX | Linktree</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #0a0a0c;
+            --card-bg: rgba(20, 20, 25, 0.85);
+            --accent-color: #a855f7;
+            --yt-red: #ff0000;
+            --text-color: #ffffff;
+            --shopier-color: #2b3990;
+        }
+
+        body {
+            /* Arkaplan ayarları: Kaliteyi korur ve sayfayı tam kaplar */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('arkaplan.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-container { text-align: center; margin-bottom: 30px; }
+        
+        .profile-pic {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-color);
+            margin-bottom: 15px;
+            object-fit: cover;
+            background-color: #1a1a1a;
+        }
+
+        .links-container { width: 100%; max-width: 480px; }
+
+        .btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 18px 25px;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.04);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+            background: rgba(30, 30, 40, 0.95);
+        }
+
+        .btn i { margin-right: 15px; font-size: 1.3rem; width: 30px; text-align: center; }
+
+        .stats-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .counter { font-size: 3.2rem; font-weight: 800; color: var(--text-color); margin: 10px 0; }
+        
+        .progress-container {
+            width: 100%; height: 14px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+            margin: 20px 0 10px 0;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--yt-red), var(--accent-color));
+            width: 0%; 
+            border-radius: 12px;
+            transition: width 2.5s cubic-bezier(0.1, 0.5, 0.5, 1);
+        }
+
+        .target-text { font-size: 0.9rem; color: #aaa; }
+
+        .mail-btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+        
+        .mail-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+        }
+
+        .section-divider {
+            margin-top: 45px;
+            color: #ccc;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container fade-in">
+        <!-- Profil Fotoğrafın -->
+        <img src="ppp.jpg" 
+             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=RTX&background=a855f7&color=fff';" 
+             class="profile-pic" 
+             alt="RobloxTurkiyeX">
+        <h2 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">RobloxTurkiyeX ✅</h2>
+        <p style="color: #ddd;">Content Creator & Streamer</p>
+    </div>
+
+    <div class="links-container">
+        <!-- Sosyal Medya Linkleri -->
+        <a href="https://www.youtube.com/@robloxturkiyex" target="_blank" class="btn fade-in">
+            <i class="fab fa-youtube" style="color: var(--yt-red);"></i> YouTube
+        </a>
+        <a href="https://www.instagram.com/robloxturkiyex" target="_blank" class="btn fade-in">
+            <i class="fab fa-instagram" style="color: #e1306c;"></i> Instagram
+        </a>
+        <a href="https://www.tiktok.com/@robloxturkiyex" target="_blank" class="btn fade-in">
+            <i class="fab fa-tiktok"></i> TikTok
+        </a>
+        <a href="https://discord.gg/XbcJXFT3rW" target="_blank" class="btn fade-in">
+            <i class="fab fa-discord" style="color: #5865f2;"></i> Discord Sunucumuz
+        </a>
+        
+        <div class="section-divider fade-in">Destekle</div>
+        <!-- Shopier Bağış Linki -->
+        <a href="https://www.shopier.com/RobloxTurkiyeX" target="_blank" class="btn fade-in">
+            <i class="fas fa-shopping-basket" style="color: #00a1e4;"></i> Destek Ol (Shopier)
+        </a>
+
+        <!-- Akıllı Hedef Kartı -->
+        <div class="stats-card fade-in" id="statsSection">
+            <i class="fab fa-youtube" style="color: var(--yt-red); font-size: 2.2rem;"></i>
+            <div class="counter" id="subCount">0</div>
+            <p style="margin:0; color:#eee;">YouTube Abone</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="targetBar"></div>
+            </div>
+            <p id="targetDescription" class="target-text">Hedef yükleniyor...</p>
+        </div>
+    </div>
+
+    <!-- İletişim Kısmı -->
+    <div class="fade-in" style="text-align:center; margin-top:60px; padding-bottom: 60px;">
+        <p style="color: #eee; text-shadow: 1px 1px 2px black;">İş birlikleri ve iletişim için:</p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.robloxturkiyex@gmail.com&su=İş Birliği Teklifi&body=Merhaba RobloxTurkiyeX," 
+           target="_blank" class="mail-btn">
+           E-posta Gönder
+        </a>
+    </div>
+
+    <script>
+        // --- BURAYI GÜNCELLEMEN YETERLİ ---
+        const currentSubs = 450; // Mevcut abone sayın
+        // ---------------------------------
+
+        // Akıllı Hedef Belirleme
+        let targetSubs;
+        if (currentSubs < 1000) {
+            targetSubs = 1000;
+        } else if (currentSubs < 10000) {
+            targetSubs = 10000;
+        } else {
+            targetSubs = 100000;
+        }
+
+        let animated = false;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.id === 'statsSection' && !animated) {
+                        startStatsAnimation();
+                        animated = true;
+                    }
+                }
+            });
+        }, { threshold: 0.25 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        function startStatsAnimation() {
+            const duration = 2500;
+            const frameRate = 1000 / 60;
+            const totalFrames = duration / frameRate;
+            
+            // 1. Sayı Animasyonu
+            let countFrame = 0;
+            const countInterval = setInterval(() => {
+                countFrame++;
+                const progress = countFrame / totalFrames;
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                document.getElementById('subCount').innerText = Math.floor(easeProgress * currentSubs).toLocaleString();
+                if (countFrame >= totalFrames) clearInterval(countInterval);
+            }, frameRate);
+
+            // 2. Hedef Metni ve Yüzde
+            const finalPercent = Math.min((currentSubs / targetSubs) * 100, 100);
+            let percentFrame = 0;
+            const percentInterval = setInterval(() => {
+                percentFrame++;
+                const progress = percentFrame / totalFrames;
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentPercent = Math.floor(easeProgress * finalPercent);
+                
+                document.getElementById('targetDescription').innerHTML = 
+                    `Hedef: ${targetSubs.toLocaleString()} Abone (%${currentPercent})`;
+                
+                if (percentFrame >= totalFrames) clearInterval(percentInterval);
+            }, frameRate);
+
+            // 3. İlerleme Çubuğu Animasyonu
+            setTimeout(() => {
+                document.getElementById('targetBar').style.width = finalPercent + '%';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
